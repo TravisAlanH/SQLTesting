@@ -1,18 +1,35 @@
 const { Client } = require("pg");
 
-var conectionString = "postgres://admin:WAT499er!@10.34.3.86/ip:5432/raritan";
+// Replace the following with your actual database connection details
+const config = {
+  user: "admin",
+  password: "WAT499er!",
+  host: "10.34.3.86",
+  database: "raritan",
+  port: 5432, // Replace with your PostgreSQL port if it's different
+};
 
-var pgClient = new Client(conectionString);
+// Your SQL query
+const query = 'SELECT "ModelName" from odbc."dcModels"';
 
-pgClient.connect();
+// Create a new PostgreSQL client
+const client = new Client(config);
 
-var query = pgClient.query(`SELECT "ModelName" from odbc."dcModels"`);
+// Connect to the database
+client.connect();
 
-let returnData;
+// Perform the query
+client.query(query, (err, result) => {
+  if (err) {
+    console.error("Error executing query:", err);
+    client.end();
+    return;
+  }
 
-query.on("row", (row, results) => {
-  results.addRow(row);
-  returnData = results;
+  // Close the client connection
+  client.end();
+
+  // Convert the query result to JSON and print it
+  const jsonResult = JSON.stringify(result.rows);
+  console.log(jsonResult);
 });
-
-console.log(returnData);

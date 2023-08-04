@@ -6,18 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "build": "npm run build"
+    "build": "npm build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TravisAlanH/SQLTesting.git"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TravisAlanH/SQLTesting/issues"
   },
-  "homepage": "https://github.com/TravisAlanH/SQLTesting#readme"
+  "homepage": "https://github.com/TravisAlanH/SQLTesting#readme",
+  "dependencies": {
+    "pg": "^8.11.2"
+  }
 }
